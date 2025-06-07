@@ -1,4 +1,69 @@
 
-body { font-family: sans-serif; margin: 0; padding: 0; background: #f5f5f5; }
-.container { padding: 2rem; }
-.btn { display: inline-block; padding: 10px 20px; margin-top: 1rem; background: #4CAF50; color: white; text-decoration: none; border: none; border-radius: 5px; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+.slider {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.slides {
+  width: 300%;
+  height: 100%;
+  display: flex;
+  animation: slide 12s infinite;
+}
+
+.slides img {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+}
+
+@keyframes slide {
+  0% {transform: translateX(0);}
+  33% {transform: translateX(-100vw);}
+  66% {transform: translateX(-200vw);}
+  100% {transform: translateX(0);}
+}
+
+.login-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255,255,255,0.9);
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.login-box h1 {
+  margin-bottom: 1.5rem;
+}
+
+.login-box input {
+  display: block;
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.login-box button {
+  background: #4CAF50;
+  color: white;
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
