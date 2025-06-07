@@ -49,6 +49,25 @@
   <div class="hero">
     <h1>Mi Tienda 3D</h1>
     <div class="buttons">
+
+    <a href="#" class="btn" onclick="entrarComoDemo()">Entrar directamente (demo)</a>
+
+    <script>
+      function entrarComoDemo() {
+        const demoUser = {
+          nombre: "Demo",
+          usuario: "demo_user",
+          correo: "demo@ejemplo.com",
+          password: "",
+          roles: ["usuario"],
+          impresora: ""
+        };
+        localStorage.setItem("usuarioActual", JSON.stringify(demoUser));
+        localStorage.setItem("gustosSeleccionados", JSON.stringify(["figuras", "gadgets", "arte"]));
+        window.location.href = "./marketplace.html";
+      }
+    </script>
+
       <a href="login.html" class="btn">Iniciar sesión</a>
       <a href="registro.html" class="btn">Crear cuenta</a>
     </div>
