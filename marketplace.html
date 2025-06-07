@@ -53,39 +53,30 @@
 <body>
   <button onclick="history.back()" class="back-button">← Volver</button>
   <h1 style="text-align: center; margin-top: 30px;">Marketplace</h1>
-  <div class="marketplace">
-    <div class="model-card">
-      <img src="images/img1.jpg" alt="Modelo 1">
-      <div class="content">
-        <h3>Soporte para auriculares</h3>
-        <p>Un soporte elegante para tus cascos, ideal para escritorios.</p>
-        <button>Ver más</button>
-      </div>
-    </div>
-    <div class="model-card">
-      <img src="images/img2.jpg" alt="Modelo 2">
-      <div class="content">
-        <h3>Figura decorativa de dragón</h3>
-        <p>Un diseño detallado para los amantes de la fantasía.</p>
-        <button>Ver más</button>
-      </div>
-    </div>
-    <div class="model-card">
-      <img src="images/img3.jpg" alt="Modelo 3">
-      <div class="content">
-        <h3>Gadget organizador USB</h3>
-        <p>Mantén tus cables y memorias USB ordenados.</p>
-        <button>Ver más</button>
-      </div>
-    </div>
-    <div class="model-card">
-      <img src="images/img1.jpg" alt="Modelo 4">
-      <div class="content">
-        <h3>Soporte de móvil ajustable</h3>
-        <p>Ideal para escritorio, compatible con varios tamaños.</p>
-        <button>Ver más</button>
-      </div>
-    </div>
-  </div>
+  <div class="marketplace" id="contenedorModelos"></div>
+
+  <script>
+    const modelos = JSON.parse(localStorage.getItem("modelosSubidos")) || [];
+    const contenedor = document.getElementById("contenedorModelos");
+
+    if (modelos.length === 0) {
+      contenedor.innerHTML = "<p style='grid-column: 1/-1; text-align:center;'>No hay modelos subidos aún.</p>";
+    } else {
+      modelos.forEach(m => {
+        const div = document.createElement("div");
+        div.className = "model-card";
+        div.innerHTML = `
+          <img src="images/${m.imagen}" alt="${m.nombre}">
+          <div class="content">
+            <h3>${m.nombre}</h3>
+            <p>${m.descripcion}</p>
+            <p style="font-size: 0.8rem; color: #999;">Subido por: ${m.autor}</p>
+            <button>Ver más</button>
+          </div>
+        `;
+        contenedor.appendChild(div);
+      });
+    }
+  </script>
 </body>
 </html>
