@@ -44,7 +44,7 @@
       <label><input type="checkbox" name="gusto" value="figuras"> Figuras decorativas</label>
       <label><input type="checkbox" name="gusto" value="gadgets"> Gadgets / Tecnología</label>
       <label><input type="checkbox" name="gusto" value="juguetes"> Juguetes / Juegos</label>
-      <label><input type="checkbox" name="gusto" value="utiles"> Piezas útiles (ganchos, soportes, etc.)</label>
+      <label><input type="checkbox" name="gusto" value="utiles"> Piezas útiles</label>
       <label><input type="checkbox" name="gusto" value="arte"> Arte y diseño</label>
       <label><input type="checkbox" name="gusto" value="otros"> Otros</label>
       <button type="submit">Guardar y continuar</button>
@@ -52,19 +52,18 @@
   </div>
 
   <script>
-    const datos = JSON.parse(localStorage.getItem("datosRegistro"));
+    const usuario = JSON.parse(localStorage.getItem("usuarioActual"));
     const saludo = document.getElementById("saludo");
-    if (datos && datos.nombre) {
-      saludo.textContent = `¡Hola ${datos.nombre}! Selecciona lo que más te interesa`;
+    if (usuario && usuario.nombre) {
+      saludo.textContent = `¡Hola ${usuario.nombre}! Selecciona lo que más te interesa`;
     } else {
       saludo.textContent = "Selecciona tus gustos";
     }
 
     function guardarGustos(event) {
       event.preventDefault();
-      const checkboxes = document.querySelectorAll('input[name="gusto"]:checked');
-      const gustos = Array.from(checkboxes).map(cb => cb.value);
-      localStorage.setItem("gustosSeleccionados", JSON.stringify(gustos));
+      const seleccionados = Array.from(document.querySelectorAll('input[name="gusto"]:checked')).map(cb => cb.value);
+      localStorage.setItem("gustosSeleccionados", JSON.stringify(seleccionados));
       window.location.href = "./marketplace.html";
     }
   </script>
