@@ -11,7 +11,28 @@
       const impresoraField = document.getElementById('impresora-modelo');
       impresoraField.style.display = checkbox.checked ? 'block' : 'none';
     }
-    function redirigirAGustos() {
+
+    function guardarYRedirigir(event) {
+      event.preventDefault();
+
+      const nombre = document.getElementById('nombre').value;
+      const usuario = document.getElementById('usuario').value;
+      const correo = document.getElementById('correo').value;
+      const roles = [];
+      if (document.getElementById('creador').checked) roles.push('creador');
+      if (document.getElementById('impresor').checked) roles.push('impresor');
+      if (document.getElementById('usuarioCheck').checked) roles.push('usuario');
+      const impresora = document.getElementById('impresora-modelo-input').value;
+
+      const datos = {
+        nombre,
+        usuario,
+        correo,
+        roles,
+        impresora
+      };
+
+      localStorage.setItem('datosRegistro', JSON.stringify(datos));
       window.location.href = 'gustos.html';
     }
   </script>
@@ -20,19 +41,19 @@
   <button onclick="history.back()" class="back-button">← Volver</button>
   <div class="register-box">
     <h2>Crear cuenta</h2>
-    <form onsubmit="event.preventDefault(); redirigirAGustos();">
-      <input type="text" placeholder="Nombre completo" required />
-      <input type="text" placeholder="Nombre de usuario" required />
-      <input type="email" placeholder="Correo electrónico" required />
+    <form onsubmit="guardarYRedirigir(event)">
+      <input type="text" id="nombre" placeholder="Nombre completo" required />
+      <input type="text" id="usuario" placeholder="Nombre de usuario" required />
+      <input type="email" id="correo" placeholder="Correo electrónico" required />
       <input type="password" placeholder="Contraseña" required />
       <input type="password" placeholder="Confirmar contraseña" required />
 
-      <label><input type="checkbox" name="rol" value="creador"> Creador</label><br>
-      <label><input type="checkbox" name="rol" value="impresor" id="impresor" onchange="toggleImpresoraField()"> Impresor</label><br>
+      <label><input type="checkbox" id="creador" value="creador"> Creador</label><br>
+      <label><input type="checkbox" id="impresor" value="impresor" onchange="toggleImpresoraField()"> Impresor</label><br>
       <div id="impresora-modelo" style="display:none;">
-        <input type="text" placeholder="Modelo de impresora" />
+        <input type="text" id="impresora-modelo-input" placeholder="Modelo de impresora" />
       </div>
-      <label><input type="checkbox" name="rol" value="usuario"> Usuario</label><br><br>
+      <label><input type="checkbox" id="usuarioCheck" value="usuario"> Usuario</label><br><br>
 
       <label>Subir foto de perfil:</label><br>
       <input type="file" accept="image/*"><br><br>
