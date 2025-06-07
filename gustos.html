@@ -39,7 +39,7 @@
 <body>
   <button onclick="history.back()" class="back-button">← Volver</button>
   <div class="gustos-box">
-    <h2>¿Qué tipo de modelos te interesan?</h2>
+    <h2 id="saludo">Cargando...</h2>
     <form action="index.html" method="get">
       <label><input type="checkbox" name="gusto" value="figuras"> Figuras decorativas</label>
       <label><input type="checkbox" name="gusto" value="gadgets"> Gadgets / Tecnología</label>
@@ -50,5 +50,15 @@
       <button type="submit">Guardar y continuar</button>
     </form>
   </div>
+
+  <script>
+    const datos = JSON.parse(localStorage.getItem("datosRegistro"));
+    const saludo = document.getElementById("saludo");
+    if (datos && datos.nombre) {
+      saludo.textContent = `¡Hola ${datos.nombre}! Selecciona lo que más te interesa`;
+    } else {
+      saludo.textContent = "Selecciona tus gustos";
+    }
+  </script>
 </body>
 </html>

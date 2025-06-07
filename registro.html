@@ -24,7 +24,7 @@
       if (document.getElementById('usuarioCheck').checked) roles.push('usuario');
       const impresora = document.getElementById('impresora-modelo-input').value;
 
-      const datos = {
+      const nuevoUsuario = {
         nombre,
         usuario,
         correo,
@@ -32,7 +32,14 @@
         impresora
       };
 
-      localStorage.setItem('datosRegistro', JSON.stringify(datos));
+      // Simular base de datos local
+      const baseUsuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+      baseUsuarios.push(nuevoUsuario);
+      localStorage.setItem('usuarios', JSON.stringify(baseUsuarios));
+
+      // Guardar el usuario actual por separado (para gustos.html)
+      localStorage.setItem('datosRegistro', JSON.stringify(nuevoUsuario));
+
       window.location.href = 'gustos.html';
     }
   </script>
