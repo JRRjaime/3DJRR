@@ -97,3 +97,19 @@ form button {
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
+
+
+.back-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 16px;
+  background-color: white;
+  border: 2px solid #007BFF;
+  color: #007BFF;
+  padding: 5px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
