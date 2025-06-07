@@ -1,37 +1,37 @@
 
-body, html {
+body {
   margin: 0;
-  padding: 0;
-  height: 100%;
   font-family: Arial, sans-serif;
   overflow: hidden;
 }
 
-.background-slider {
+.slider {
   position: fixed;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
   z-index: -1;
+  overflow: hidden;
 }
 
-.background-slider img {
-  position: absolute;
-  width: 100%;
+.slides {
+  width: 300%;
   height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  animation: fade 60s infinite;
+  display: flex;
+  animation: slide 12s infinite;
 }
 
-.background-slider img:nth-child(1) { animation-delay: 0s; }
-.background-slider img:nth-child(2) { animation-delay: 20s; }
-.background-slider img:nth-child(3) { animation-delay: 40s; }
+.slides img {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+}
 
-@keyframes fade {
-  0%   { opacity: 1; }
-  30%  { opacity: 1; }
-  33%  { opacity: 0; }
-  100% { opacity: 0; }
+@keyframes slide {
+  0% {transform: translateX(0);}
+  33% {transform: translateX(-100vw);}
+  66% {transform: translateX(-200vw);}
+  100% {transform: translateX(0);}
 }
 
 .login-box {
@@ -39,32 +39,70 @@ body, html {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: white;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  background: rgba(255,255,255,0.9);
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
-form {
-  display: flex;
-  flex-direction: column;
+.login-box h1 {
+  margin-bottom: 1.5rem;
 }
 
-input {
-  margin: 10px 0;
-  padding: 10px;
-  font-size: 16px;
+.login-box input {
+  display: block;
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-button {
-  padding: 10px;
-  background-color: #4CAF50;
+.login-box button {
+  background: #4CAF50;
   color: white;
+  padding: 0.8rem 2rem;
   border: none;
-  font-size: 16px;
+  border-radius: 5px;
   cursor: pointer;
 }
 
-button:hover {
-  background-color: #45a049;
+.register-box {
+  max-width: 400px;
+  margin: 5% auto;
+  background: rgba(255,255,255,0.95);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.register-box h1 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.register-box input[type="text"],
+.register-box input[type="email"],
+.register-box input[type="password"] {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.register-box label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.register-box button {
+  background: #007BFF;
+  color: white;
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
 }
