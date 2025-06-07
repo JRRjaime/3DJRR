@@ -40,7 +40,7 @@
   <button onclick="history.back()" class="back-button">← Volver</button>
   <div class="gustos-box">
     <h2 id="saludo">Cargando...</h2>
-    <form action="index.html" method="get">
+    <form onsubmit="guardarGustos(event)">
       <label><input type="checkbox" name="gusto" value="figuras"> Figuras decorativas</label>
       <label><input type="checkbox" name="gusto" value="gadgets"> Gadgets / Tecnología</label>
       <label><input type="checkbox" name="gusto" value="juguetes"> Juguetes / Juegos</label>
@@ -58,6 +58,14 @@
       saludo.textContent = `¡Hola ${datos.nombre}! Selecciona lo que más te interesa`;
     } else {
       saludo.textContent = "Selecciona tus gustos";
+    }
+
+    function guardarGustos(event) {
+      event.preventDefault();
+      const checkboxes = document.querySelectorAll('input[name="gusto"]:checked');
+      const gustos = Array.from(checkboxes).map(cb => cb.value);
+      localStorage.setItem("gustosSeleccionados", JSON.stringify(gustos));
+      window.location.href = "./marketplace.html";
     }
   </script>
 </body>
