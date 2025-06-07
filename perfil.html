@@ -1,98 +1,49 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mi Perfil</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    .profile-container {
-      max-width: 600px;
-      margin: 80px auto;
-      padding: 30px;
-      background-color: white;
-      border-radius: 15px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-    .profile-container h1 {
-      margin-bottom: 20px;
-    }
-    .profile-container p {
-      font-size: 1.1rem;
-      margin: 10px 0;
-    }
-    .profile-container .info-group {
-      text-align: left;
-      margin-top: 20px;
-    }
-    .profile-container .info-group strong {
-      display: inline-block;
-      width: 130px;
-    }
-    .profile-actions {
-      display: flex;
-      gap: 10px;
-      margin-top: 30px;
-      justify-content: center;
-    }
-    .btn-perfil {
-      padding: 10px 20px;
-      border: none;
-      border-radius: 6px;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-    .btn-editar {
-      background-color: #ffc107;
-      color: black;
-    }
-    .btn-logout {
-      background-color: #dc3545;
-      color: white;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perfil - Mi Tienda 3D</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <button onclick="history.back()" class="back-button">← Volver</button>
-  <div class="profile-container">
+  <div class="profile-box">
     <h1>Mi Perfil</h1>
-    <div id="contenidoPerfil">
-      <p>Cargando datos...</p>
-    </div>
-    <div class="profile-actions">
-      <button class="btn-perfil btn-editar" onclick="editarPerfil()">Editar perfil</button>
-      <button class="btn-perfil btn-logout" onclick="cerrarSesion()">Cerrar sesión</button>
-    </div>
+    <form>
+      <label>Nombre completo:</label>
+      <input type="text" placeholder="Tu nombre" required />
+
+      <label>Nombre de usuario:</label>
+      <input type="text" placeholder="Usuario" required />
+
+      <label>Dirección:</label>
+      <input type="text" placeholder="Dirección completa" required />
+
+      <label>Correo electrónico:</label>
+      <input type="email" value="usuario@ejemplo.com" readonly />
+
+      <label>¿Qué eres? (elige uno o varios):</label>
+      <label><input type="checkbox" id="creador" /> Creador</label>
+      <label><input type="checkbox" id="impresor" onchange="togglePrinterField()" /> Impresor</label>
+      <label><input type="checkbox" id="usuario" /> Usuario</label>
+
+      <div id="impresora-field" style="display:none;">
+        <label>Modelo de impresora:</label>
+        <input type="text" placeholder="Ej: Creality K1C" />
+      </div>
+
+      <label>Foto de perfil:</label>
+      <input type="file" accept="image/*" />
+
+      <button type="submit">Guardar perfil</button>
+    </form>
   </div>
 
   <script>
-    const usuario = JSON.parse(localStorage.getItem("usuarioActual"));
-    const gustos = JSON.parse(localStorage.getItem("gustosSeleccionados")) || [];
-    const contenedor = document.getElementById("contenidoPerfil");
-
-    if (usuario) {
-      contenedor.innerHTML = `
-        <div class="info-group">
-          <p><strong>Nombre:</strong> ${usuario.nombre}</p>
-          <p><strong>Usuario:</strong> ${usuario.usuario}</p>
-          <p><strong>Correo:</strong> ${usuario.correo}</p>
-          <p><strong>Roles:</strong> ${usuario.roles.join(", ")}</p>
-          ${usuario.roles.includes("impresor") ? `<p><strong>Impresora:</strong> ${usuario.impresora}</p>` : ""}
-          <p><strong>Gustos:</strong> ${gustos.length > 0 ? gustos.join(", ") : "No especificados"}</p>
-        </div>
-      `;
-    } else {
-      contenedor.innerHTML = "<p>No has iniciado sesión.</p>";
-    }
-
-    function cerrarSesion() {
-      localStorage.removeItem("usuarioActual");
-      window.location.href = "./index.html";
-    }
-
-    function editarPerfil() {
-      alert("Función de edición próximamente");
+    function togglePrinterField() {
+      const isChecked = document.getElementById("impresor").checked;
+      document.getElementById("impresora-field").style.display = isChecked ? "block" : "none";
     }
   </script>
 </body>
