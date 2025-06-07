@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -30,9 +29,10 @@
     }
     .buttons {
       display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 20px;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      margin-top: 30px;
     }
     .btn {
       background: #007BFF;
@@ -41,6 +41,7 @@
       text-decoration: none;
       font-size: 1rem;
       border-radius: 5px;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -49,18 +50,14 @@
   <div class="hero">
     <h1>Mi Tienda 3D</h1>
     <div class="buttons">
-<a href="#" class="btn" onclick="entrarComoDemo()">Entrar directamente (demo)</a>
       <a href="login.html" class="btn">Iniciar sesión</a>
       <a href="registro.html" class="btn">Crear cuenta</a>
+      <a href="#" class="btn" onclick="entrarComoDemo()">Entrar directamente (demo)</a>
     </div>
   </div>
 
   <script>
-    const images = [
-      'images/img1.jpg',
-      'images/img2.jpg',
-      'images/img3.jpg'
-    ];
+    const images = ['images/img1.jpg', 'images/img2.jpg', 'images/img3.jpg'];
     let current = 0;
     const bg = document.getElementById('background');
     function changeBackground() {
@@ -68,8 +65,8 @@
       current = (current + 1) % images.length;
     }
     changeBackground();
-    setInterval(changeBackground, 10000); // Cambia cada 10 segundos
-  
+    setInterval(changeBackground, 10000);
+
     function entrarComoDemo() {
       const demoUser = {
         nombre: "Demo",
@@ -83,7 +80,6 @@
       localStorage.setItem("gustosSeleccionados", JSON.stringify(["figuras", "gadgets", "arte"]));
       window.location.href = "./marketplace.html";
     }
-    
-</script>
+  </script>
 </body>
 </html>
