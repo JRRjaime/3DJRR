@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Marketplace - Mi Tienda 3D</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .marketplace {
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+    .model-card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.2s ease;
+    }
+    .model-card:hover {
+      transform: translateY(-5px);
+    }
+    .model-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .model-card .content {
+      padding: 15px;
+    }
+    .model-card h3 {
+      margin-top: 0;
+    }
+    .model-card p {
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .model-card button {
+      margin-top: 10px;
+      padding: 8px 15px;
+      background-color: #28a745;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <button onclick="history.back()" class="back-button">← Volver</button>
+  <h1 style="text-align: center; margin-top: 30px;">Marketplace</h1>
+  <div class="marketplace">
+    <div class="model-card">
+      <img src="images/img1.jpg" alt="Modelo 1">
+      <div class="content">
+        <h3>Soporte para auriculares</h3>
+        <p>Un soporte elegante para tus cascos, ideal para escritorios.</p>
+        <button>Ver más</button>
+      </div>
+    </div>
+    <div class="model-card">
+      <img src="images/img2.jpg" alt="Modelo 2">
+      <div class="content">
+        <h3>Figura decorativa de dragón</h3>
+        <p>Un diseño detallado para los amantes de la fantasía.</p>
+        <button>Ver más</button>
+      </div>
+    </div>
+    <div class="model-card">
+      <img src="images/img3.jpg" alt="Modelo 3">
+      <div class="content">
+        <h3>Gadget organizador USB</h3>
+        <p>Mantén tus cables y memorias USB ordenados.</p>
+        <button>Ver más</button>
+      </div>
+    </div>
+    <div class="model-card">
+      <img src="images/img1.jpg" alt="Modelo 4">
+      <div class="content">
+        <h3>Soporte de móvil ajustable</h3>
+        <p>Ideal para escritorio, compatible con varios tamaños.</p>
+        <button>Ver más</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
