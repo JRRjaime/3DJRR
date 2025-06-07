@@ -2,10 +2,17 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Crear cuenta</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
+  <script>
+    function toggleImpresoraField() {
+      const checkbox = document.getElementById('impresor');
+      const impresoraField = document.getElementById('impresora-modelo');
+      impresoraField.style.display = checkbox.checked ? 'block' : 'none';
+    }
+  </script>
 </head>
 <body>
   <div class="register-box">
@@ -16,6 +23,17 @@
       <input type="email" placeholder="Correo electrónico" required />
       <input type="password" placeholder="Contraseña" required />
       <input type="password" placeholder="Confirmar contraseña" required />
+      
+      <label><input type="checkbox" name="rol" value="creador"> Creador</label><br>
+      <label><input type="checkbox" name="rol" value="impresor" id="impresor" onchange="toggleImpresoraField()"> Impresor</label><br>
+      <div id="impresora-modelo" style="display:none;">
+        <input type="text" placeholder="Modelo de impresora" />
+      </div>
+      <label><input type="checkbox" name="rol" value="usuario"> Usuario</label><br><br>
+
+      <label>Subir foto de perfil:</label><br>
+      <input type="file" accept="image/*"><br><br>
+
       <button type="submit">Registrarse</button>
     </form>
   </div>
