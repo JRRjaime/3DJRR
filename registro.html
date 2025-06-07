@@ -18,6 +18,7 @@
       const nombre = document.getElementById('nombre').value;
       const usuario = document.getElementById('usuario').value;
       const correo = document.getElementById('correo').value;
+      const password = document.getElementById('password').value;
       const roles = [];
       if (document.getElementById('creador').checked) roles.push('creador');
       if (document.getElementById('impresor').checked) roles.push('impresor');
@@ -28,16 +29,15 @@
         nombre,
         usuario,
         correo,
+        password,
         roles,
         impresora
       };
 
-      // Simular base de datos local
       const baseUsuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
       baseUsuarios.push(nuevoUsuario);
       localStorage.setItem('usuarios', JSON.stringify(baseUsuarios));
 
-      // Guardar el usuario actual por separado (para gustos.html)
       localStorage.setItem('datosRegistro', JSON.stringify(nuevoUsuario));
 
       window.location.href = 'gustos.html';
@@ -52,7 +52,7 @@
       <input type="text" id="nombre" placeholder="Nombre completo" required />
       <input type="text" id="usuario" placeholder="Nombre de usuario" required />
       <input type="email" id="correo" placeholder="Correo electrónico" required />
-      <input type="password" placeholder="Contraseña" required />
+      <input type="password" id="password" placeholder="Contraseña" required />
       <input type="password" placeholder="Confirmar contraseña" required />
 
       <label><input type="checkbox" id="creador" value="creador"> Creador</label><br>
