@@ -3,9 +3,48 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Perfil</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perfil - Mi Tienda 3D</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Bienvenido a tu perfil</h1>
+  <div class="profile-box">
+    <h1>Mi Perfil</h1>
+    <form>
+      <label>Nombre completo:</label>
+      <input type="text" placeholder="Tu nombre" required />
+
+      <label>Nombre de usuario:</label>
+      <input type="text" placeholder="Usuario" required />
+
+      <label>Dirección:</label>
+      <input type="text" placeholder="Dirección completa" required />
+
+      <label>Correo electrónico:</label>
+      <input type="email" value="usuario@ejemplo.com" readonly />
+
+      <label>¿Qué eres? (elige uno o varios):</label>
+      <label><input type="checkbox" id="creador" /> Creador</label>
+      <label><input type="checkbox" id="impresor" onchange="togglePrinterField()" /> Impresor</label>
+      <label><input type="checkbox" id="usuario" /> Usuario</label>
+
+      <div id="impresora-field" style="display:none;">
+        <label>Modelo de impresora:</label>
+        <input type="text" placeholder="Ej: Creality K1C" />
+      </div>
+
+      <label>Foto de perfil:</label>
+      <input type="file" accept="image/*" />
+
+      <button type="submit">Guardar perfil</button>
+    </form>
+  </div>
+
+  <script>
+    function togglePrinterField() {
+      const isChecked = document.getElementById("impresor").checked;
+      document.getElementById("impresora-field").style.display = isChecked ? "block" : "none";
+    }
+  </script>
 </body>
 </html>
