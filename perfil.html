@@ -6,6 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Perfil - Mi Tienda 3D</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .rol-section {
+      margin-top: 30px;
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      padding: 15px;
+      border-radius: 8px;
+    }
+    .rol-section h3 {
+      margin-top: 0;
+      color: #007BFF;
+    }
+  </style>
 </head>
 <body>
   <div class="profile-box">
@@ -24,9 +37,9 @@
       <input id="correo" type="email" readonly />
 
       <label>¿Qué eres? (elige uno o varios):</label>
-      <label><input type="checkbox" id="creador" /> Creador</label>
-      <label><input type="checkbox" id="impresor" onchange="togglePrinterField()" /> Impresor</label>
-      <label><input type="checkbox" id="usuarioRol" /> Usuario</label>
+      <label><input type="checkbox" id="creador" onchange="actualizarSecciones()" /> Creador</label>
+      <label><input type="checkbox" id="impresor" onchange="togglePrinterField(); actualizarSecciones()" /> Impresor</label>
+      <label><input type="checkbox" id="usuarioRol" onchange="actualizarSecciones()" /> Usuario</label>
 
       <div id="impresora-field" style="display:none;">
         <label>Modelo de impresora:</label>
@@ -38,6 +51,8 @@
 
       <button type="submit">Guardar perfil</button>
     </form>
+
+    <div id="seccionesPorRol"></div>
   </div>
 
   <script>
@@ -60,11 +75,47 @@
         document.getElementById("modeloImpresora").value = usuario.impresora || "";
       }
       if (usuario.roles?.includes("usuario")) document.getElementById("usuarioRol").checked = true;
+
+      actualizarSecciones();
     }
 
     function togglePrinterField() {
       const isChecked = document.getElementById("impresor").checked;
       document.getElementById("impresora-field").style.display = isChecked ? "block" : "none";
+    }
+
+    function actualizarSecciones() {
+      const secciones = document.getElementById("seccionesPorRol");
+      secciones.innerHTML = "";
+
+      if (document.getElementById("creador").checked) {
+        secciones.innerHTML += `
+          <div class="rol-section">
+            <h3>👩‍🎨 Creador</h3>
+            <a href="subir_modelo.html">📤 Subir nuevo modelo</a><br/>
+            <a href="marketplace.html">🧾 Ver mis modelos</a>
+          </div>
+        `;
+      }
+
+      if (document.getElementById("impresor").checked) {
+        secciones.innerHTML += `
+          <div class="rol-section">
+            <h3>🛠 Impresor</h3>
+            <a href="pedidos_impresor.html">📥 Ver pedidos recibidos</a>
+          </div>
+        `;
+      }
+
+      if (document.getElementById("usuarioRol").checked) {
+        secciones.innerHTML += `
+          <div class="rol-section">
+            <h3>🧑 Usuario</h3>
+            <a href="mis_pedidos.html">🛒 Ver mis pedidos</a><br/>
+            <a href="#">⭐ Dejar valoraciones</a>
+          </div>
+        `;
+      }
     }
 
     function guardarPerfil(event) {
@@ -93,6 +144,7 @@
 
       localStorage.setItem("usuarioActual", JSON.stringify(usuarioActual));
       alert("Perfil actualizado correctamente");
+      actualizarSecciones();
     }
 
     window.onload = cargarPerfil;
