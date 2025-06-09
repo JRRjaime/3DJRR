@@ -10,41 +10,92 @@
 <body>
   <div class="profile-box">
     <h1>Mi Perfil</h1>
-    <form>
+    <form onsubmit="guardarPerfil(event)">
       <label>Nombre completo:</label>
-      <input type="text" placeholder="Tu nombre" required />
+      <input id="nombre" type="text" placeholder="Tu nombre" required />
 
       <label>Nombre de usuario:</label>
-      <input type="text" placeholder="Usuario" required />
+      <input id="usuario" type="text" placeholder="Usuario" required />
 
       <label>Dirección:</label>
-      <input type="text" placeholder="Dirección completa" required />
+      <input id="direccion" type="text" placeholder="Dirección completa" required />
 
       <label>Correo electrónico:</label>
-      <input type="email" value="usuario@ejemplo.com" readonly />
+      <input id="correo" type="email" readonly />
 
       <label>¿Qué eres? (elige uno o varios):</label>
       <label><input type="checkbox" id="creador" /> Creador</label>
       <label><input type="checkbox" id="impresor" onchange="togglePrinterField()" /> Impresor</label>
-      <label><input type="checkbox" id="usuario" /> Usuario</label>
+      <label><input type="checkbox" id="usuarioRol" /> Usuario</label>
 
       <div id="impresora-field" style="display:none;">
         <label>Modelo de impresora:</label>
-        <input type="text" placeholder="Ej: Creality K1C" />
+        <input id="modeloImpresora" type="text" placeholder="Ej: Creality K1C" />
       </div>
 
       <label>Foto de perfil:</label>
-      <input type="file" accept="image/*" />
+      <input id="foto" type="file" accept="image/*" />
 
       <button type="submit">Guardar perfil</button>
     </form>
   </div>
 
   <script>
+    function cargarPerfil() {
+      const usuario = JSON.parse(localStorage.getItem("usuarioActual"));
+      if (!usuario) {
+        alert("No hay usuario cargado.");
+        return;
+      }
+
+      document.getElementById("nombre").value = usuario.nombre || "";
+      document.getElementById("usuario").value = usuario.usuario || "";
+      document.getElementById("correo").value = usuario.correo || "";
+      document.getElementById("direccion").value = usuario.direccion || "";
+
+      if (usuario.roles?.includes("creador")) document.getElementById("creador").checked = true;
+      if (usuario.roles?.includes("impresor")) {
+        document.getElementById("impresor").checked = true;
+        document.getElementById("impresora-field").style.display = "block";
+        document.getElementById("modeloImpresora").value = usuario.impresora || "";
+      }
+      if (usuario.roles?.includes("usuario")) document.getElementById("usuarioRol").checked = true;
+    }
+
     function togglePrinterField() {
       const isChecked = document.getElementById("impresor").checked;
       document.getElementById("impresora-field").style.display = isChecked ? "block" : "none";
     }
+
+    function guardarPerfil(event) {
+      event.preventDefault();
+
+      const nombre = document.getElementById("nombre").value;
+      const usuario = document.getElementById("usuario").value;
+      const correo = document.getElementById("correo").value;
+      const direccion = document.getElementById("direccion").value;
+      const roles = [];
+      if (document.getElementById("creador").checked) roles.push("creador");
+      if (document.getElementById("impresor").checked) roles.push("impresor");
+      if (document.getElementById("usuarioRol").checked) roles.push("usuario");
+      const impresora = roles.includes("impresor") ? document.getElementById("modeloImpresora").value : "";
+      const foto = document.getElementById("foto").files[0]?.name || "";
+
+      const usuarioActual = {
+        nombre,
+        usuario,
+        correo,
+        direccion,
+        roles,
+        impresora,
+        foto
+      };
+
+      localStorage.setItem("usuarioActual", JSON.stringify(usuarioActual));
+      alert("Perfil actualizado correctamente");
+    }
+
+    window.onload = cargarPerfil;
   </script>
 </body>
 </html>
