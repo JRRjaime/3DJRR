@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,95 +7,77 @@
   <title>Marketplace - Mi Tienda 3D</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    .marketplace {
-      max-width: 1200px;
-      margin: 50px auto;
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      text-align: center;
       padding: 20px;
+      background: #007BFF;
+      color: white;
+      margin: 0;
+    }
+    .categorias {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
+      gap: 20px;
+      padding: 30px;
+      max-width: 1000px;
+      margin: auto;
     }
-    .model-card {
+    .categoria {
       background: white;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
       overflow: hidden;
-      transition: transform 0.2s ease;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.2s;
     }
-    .model-card:hover {
-      transform: translateY(-5px);
+    .categoria:hover {
+      transform: scale(1.02);
     }
-    .model-card img {
+    .categoria img {
       width: 100%;
-      height: 180px;
+      height: 160px;
       object-fit: cover;
     }
-    .model-card .content {
-      padding: 15px;
+    .categoria h3 {
+      margin: 15px 0;
     }
-    .model-card h3 {
-      margin-top: 0;
-    }
-    .model-card p {
-      font-size: 0.9rem;
-      color: #555;
-    }
-    .model-card button {
-      margin-top: 10px;
-      padding: 8px 15px;
-      background-color: #28a745;
-      border: none;
-      color: white;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-  </style>
-</head>
-<body>
-  <button onclick="history.back()" class="back-button">← Volver</button>
-  <h1 style="text-align: center; margin-top: 30px;">Marketplace</h1>
-  <div class="marketplace" id="contenedorModelos"></div>
-
-  <script>
-    const modelos = JSON.parse(localStorage.getItem("modelosSubidos")) || [];
-    const contenedor = document.getElementById("contenedorModelos");
-
-    if (modelos.length === 0) {
-      contenedor.innerHTML = "<p style='grid-column: 1/-1; text-align:center;'>No hay modelos subidos aún.</p>";
-    } else {
-      modelos.forEach(m => {
-        const div = document.createElement("div");
-        div.className = "model-card";
-        div.innerHTML = `
-          <img src="images/${m.imagen}" alt="${m.nombre}">
-          <div class="content">
-            <h3>${m.nombre}</h3>
-            <p>${m.descripcion}</p>
-            <p style="font-size: 0.8rem; color: #999;">Subido por: ${m.autor}</p>
-            <button>Ver más</button>
-          </div>
-        `;
-        contenedor.appendChild(div);
-      });
-    }
-  </script>
-
-  <a href="perfil.html" class="perfil-btn">Mi perfil</a>
-  <style>
-    .perfil-btn {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background-color: #007BFF;
+    .back-button {
+      margin: 20px;
+      display: inline-block;
+      background: #007BFF;
       color: white;
       padding: 10px 15px;
       border-radius: 8px;
       text-decoration: none;
-      font-size: 0.9rem;
-      z-index: 1000;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
   </style>
-
+</head>
+<body>
+  <a href="perfil.html" class="back-button">← Ir al Perfil</a>
+  <h1>Marketplace</h1>
+  <div class="categorias">
+    <div class="categoria">
+      <img src="images/figuras.jpg" alt="Figuras de acción">
+      <h3>Figuras de acción</h3>
+    </div>
+    <div class="categoria">
+      <img src="images/coleccion.jpg" alt="Piezas de colección">
+      <h3>Piezas de colección</h3>
+    </div>
+    <div class="categoria">
+      <img src="images/utiles.jpg" alt="Utilidades">
+      <h3>Utilidades</h3>
+    </div>
+    <div class="categoria">
+      <img src="images/otros.jpg" alt="Otros">
+      <h3>Otros</h3>
+    </div>
+  </div>
 </body>
 </html>
