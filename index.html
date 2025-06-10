@@ -5,7 +5,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mi Tienda 3D</title>
-  <link rel="stylesheet" href="style.css" />
   <style>
     body {
       margin: 0;
@@ -27,6 +26,7 @@
       text-align: center;
       padding-top: 100px;
       color: white;
+      text-shadow: 0 0 5px black;
     }
     .buttons {
       display: flex;
@@ -49,7 +49,7 @@
   <div class="hero">
     <h1>Mi Tienda 3D</h1>
     <div class="buttons">
-<a href="#" class="btn" onclick="entrarComoDemo()">Entrar directamente (demo)</a>
+      <a href="#" class="btn" onclick="entrarComoDemo()">Entrar directamente (demo)</a>
       <a href="login.html" class="btn">Iniciar sesión</a>
       <a href="registro.html" class="btn">Crear cuenta</a>
     </div>
@@ -63,13 +63,16 @@
     ];
     let current = 0;
     const bg = document.getElementById('background');
+
     function changeBackground() {
       bg.style.backgroundImage = `url('${images[current]}')`;
       current = (current + 1) % images.length;
     }
+
+    // Cambiar el fondo cada 10 segundos
     changeBackground();
-    setInterval(changeBackground, 10000); // Cambia cada 10 segundos
-  
+    setInterval(changeBackground, 10000);
+
     function entrarComoDemo() {
       const demoUser = {
         nombre: "Demo",
@@ -83,7 +86,6 @@
       localStorage.setItem("gustosSeleccionados", JSON.stringify(["figuras", "gadgets", "arte"]));
       window.location.href = "./marketplace.html";
     }
-    
-</script>
+  </script>
 </body>
 </html>
