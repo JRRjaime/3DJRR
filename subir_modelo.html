@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Subir modelo 3D</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .upload-box {
+      max-width: 500px;
+      margin: 100px auto;
+      padding: 30px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    .upload-box h2 {
+      text-align: center;
+    }
+    .upload-box input, .upload-box textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+    }
+    .upload-box button {
+      width: 100%;
+      padding: 10px;
+      background: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <button onclick="history.back()" class="back-button">← Volver</button>
+  <div class="upload-box">
+    <h2>Subir nuevo modelo</h2>
+    <form onsubmit="guardarModelo(event)">
+      <input type="text" id="nombreModelo" placeholder="Nombre del modelo" required />
+      <textarea id="descripcionModelo" placeholder="Descripción" required></textarea>
+      <input type="text" id="imagenModelo" placeholder="URL de imagen (puedes usar img1.jpg, etc.)" required />
+      <input type="text" id="autorModelo" placeholder="Tu nombre o usuario" required />
+      <button type="submit">Guardar modelo</button>
+    </form>
+  </div>
+
+  <script>
+    function guardarModelo(event) {
+      event.preventDefault();
+
+      const nombre = document.getElementById("nombreModelo").value;
+      const descripcion = document.getElementById("descripcionModelo").value;
+      const imagen = document.getElementById("imagenModelo").value;
+      const autor = document.getElementById("autorModelo").value;
+
+      const modelo = { nombre, descripcion, imagen, autor };
+      const modelos = JSON.parse(localStorage.getItem("modelosSubidos")) || [];
+      modelos.push(modelo);
+      localStorage.setItem("modelosSubidos", JSON.stringify(modelos));
+
+      alert("Modelo guardado correctamente");
+      window.location.href = "marketplace.html";
+    }
+  </script>
+</body>
+</html>

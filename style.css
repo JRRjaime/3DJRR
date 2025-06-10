@@ -1,0 +1,84 @@
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f0f0f0;
+}
+
+.hero {
+  text-align: center;
+  padding-top: 100px;
+  background: #222;
+  height: 100vh;
+  color: white;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 30px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.btn {
+  background: #007BFF;
+  color: white;
+  padding: 15px 30px;
+  text-decoration: none;
+  font-size: 1rem;
+  border-radius: 5px;
+}
+
+.login-box, .register-box {
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+form input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form button {
+  width: 100%;
+  padding: 10px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.social-buttons {
+  margin-top: 20px;
+}
+
+.google-btn, .apple-btn {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+}
+
+.google-btn {
+  background: #db4437;
+  color: white;
+}
+
+.apple-btn {
+  background: #000000;
+  color: white;
+}
